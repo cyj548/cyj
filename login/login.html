@@ -138,8 +138,13 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // 验证用户名和密码
-            if (username === 'cyj' && password === '476628') {
+            // 验证用户名和密码（增加zry用户）
+            const validUsers = {
+                'cyj': '476628',
+                'zry': '05200901010041'
+            };
+            
+            if (validUsers[username] && validUsers[username] === password) {
                 // 存储用户信息到localStorage
                 localStorage.setItem('user', JSON.stringify({
                     username: username,
