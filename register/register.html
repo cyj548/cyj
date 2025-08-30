@@ -143,13 +143,20 @@
     </footer>
 
     <script>
-        // 注册表单处理 - 仅作展示，不实际注册
+        // 注册表单处理
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 提示用户注册功能未开放，引导使用指定账号登录
-            alert('注册功能暂未开放，您可以使用账号登录');
-            window.location.href = '../login/login.html';
+            const username = document.getElementById('username').value;
+            
+            // 检查是否为已存在的用户名
+            const existingUsers = ['cyj', 'zry'];
+            if (existingUsers.includes(username)) {
+                alert('该账号已存在，请直接登录！');
+                window.location.href = '../login/login.html';
+            } else {
+                alert('抱歉，目前暂不支持新用户注册！');
+            }
         });
         
         // 检查是否已登录
