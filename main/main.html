@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈优嘉的网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .header-shadow {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dropdown-shadow {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .carousel-item {
+                transition: opacity 0.5s ease-in-out;
+            }
+            .carousel-item.active {
+                opacity: 1;
+                z-index: 1;
+            }
+            .carousel-item.inactive {
+                opacity: 0;
+                z-index: 0;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- 固定头部 -->
+    <header class="fixed top-0 left-0 right-0 bg-white header-shadow z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-cube text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800">陈优嘉的网站</h1>
+            </div>
+            <div class="flex items-center space-x-10">
+                <!-- 导航菜单 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="main.html" class="text-gray-700 hover:text-primary transition-colors">首页</a>
+                    <a href="#products" class="text-gray-700 hover:text-primary transition-colors">产品</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary transition-colors">服务</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 用户菜单 -->
+                <div class="relative inline-block" id="userMenu">
+                    <!-- 触发下拉的元素 -->
+                    <div class="flex items-center space-x-2 cursor-pointer" id="userMenuTrigger">
+                        <img 
+                            src="../login/character.png" 
+                            alt="用户头像" 
+                            style="height:40px;width:40px;border-radius:50%;"
+                        >
+                        <span id="usernameDisplay" class="hidden md:inline text-gray-700"></span>
+                        <i class="fa fa-chevron-down text-xs text-gray-500 hidden md:inline"></i>
+                    </div>
+        
+                    <!-- 下拉菜单 (默认隐藏) -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md dropdown-shadow 
+                                opacity-0 invisible transform -translate-y-2 transition-all duration-300
+                                z-10" id="userDropdown">
+                        <!-- 菜单项将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-gray-700 hover:text-primary">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">首页</h2>
+        
+        <!-- 轮播图区域 -->
+        <section class="mb-10 rounded-lg overflow-hidden shadow-lg relative h-[300px] md:h-[450px]">
+            <div class="carousel-container h-full w-full relative">
+                <!-- 轮播图片1 -->
+                <div class="carousel-item active absolute inset-0">
+                    <img src="https://picsum.photos/id/26/1200/450" alt="轮播图片1" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <h3 class="text-2xl md:text-4xl font-bold mb-2">优质产品与服务</h3>
+                            <p class="text-lg md:text-xl">满足您的各种需求</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播图片2 -->
+                <div class="carousel-item inactive absolute inset-0">
+                    <img src="https://picsum.photos/id/28/1200/450" alt="轮播图片2" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <h3 class="text-2xl md:text-4xl font-bold mb-2">专业团队支持</h3>
+                            <p class="text-lg md:text-xl">为您提供全方位服务</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播图片3 -->
+                <div class="carousel-item inactive absolute inset-0">
+                    <img src="https://picsum.photos/id/29/1200/450" alt="轮播图片3" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <h3 class="text-2xl md:text-4xl font-bold mb-2">创新科技体验</h3>
+                            <p class="text-lg md:text-xl">引领行业新潮流</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播控制按钮 -->
+                <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-30 hover:bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+                
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-20">
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100 active-indicator" data-index="0"></button>
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100" data-index="1"></button>
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100" data-index="2"></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 首页内容 -->
+        <section class="mb-16">
+            <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold mb-4">欢迎访问陈优嘉的网站</h3>
+                <p class="text-gray-600 mb-4">
+                    这里提供优质的产品与服务，满足您的各种需求。请登录后享受更多专属功能。
+                </p>
+                <div id="welcomeMessage" class="text-primary font-medium"></div>
+            </div>
+        </section>
+        
+        <!-- 产品展示区 -->
+        <section id="products" class="mb-16">
+            <h3 class="text-xl font-semibold mb-6">我们的产品</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow transform hover:-translate-y-1 duration-300">
+                    <i class="fa fa-product-hunt text-primary text-3xl mb-4"></i>
+                    <h4 class="font-semibold mb-2">产品一</h4>
+                    <p class="text-gray-600">高品质产品，满足您的日常需求。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow transform hover:-translate-y-1 duration-300">
+                    <i class="fa fa-product-hunt text-primary text-3xl mb-4"></i>
+                    <h4 class="font-semibold mb-2">产品二</h4>
+                    <p class="text-gray-600">专业级设备，提升您的工作效率。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow transform hover:-translate-y-1 duration-300">
+                    <i class="fa fa-product-hunt text-primary text-3xl mb-4"></i>
+                    <h4 class="font-semibold mb-2">产品三</h4>
+                    <p class="text-gray-600">创新科技，引领行业新潮流。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 服务展示区 -->
+        <section id="services" class="mb-16">
+            <h3 class="text-xl font-semibold mb-6">我们的服务</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow transform hover:-translate-y-1 duration-300">
+                    <i class="fa fa-concierge-bell text-primary text-3xl mb-4"></i>
+                    <h4 class="font-semibold mb-2">专业咨询</h4>
+                    <p class="text-gray-600">提供一对一专业咨询服务，解决您的疑惑。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow transform hover:-translate-y-1 duration-300">
+                    <i class="fa fa-tools text-primary text-3xl mb-4"></i>
+                    <h4 class="font-semibold mb-2">技术支持</h4>
+                    <p class="text-gray-600">7x24小时技术支持，随时为您解决问题。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 关于我们 -->
+        <section id="about" class="mb-16">
+            <h3 class="text-xl font-semibold mb-6">关于我们</h3>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <p class="text-gray-600 mb-4">
+                    陈优嘉的网站成立于2025年，致力于为用户提供高品质的产品和服务。我们拥有专业的团队和丰富的经验，
+                    始终以用户需求为中心，不断创新和进步。
+                </p>
+                <p class="text-gray-600">
+                    我们的使命是通过技术创新改善人们的生活品质，为社会创造更大的价值。
+                </p>
+            </div>
+        </section>
+        
+        <!-- 联系我们 -->
+        <section id="contact">
+            <h3 class="text-xl font-semibold mb-6">联系我们</h3>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <ul class="space-y-4 text-gray-600">
+                    <li class="flex items-center gap-3">
+                        <i class="fa fa-map-marker text-primary text-xl"></i>
+                        <span>北京市朝阳区某某街道123号</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa fa-phone text-primary text-xl"></i>
+                        <span>+86 123 4567 8910</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa fa-envelope text-primary text-xl"></i>
+                        <span>contact@example.com</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-cube text-primary text-2xl"></i>
+                        <h3 class="text-xl font-bold">陈优嘉的网站</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        提供优质的产品与服务，满足您的各种需求
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="main.html" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#products" class="hover:text-primary transition-colors">产品</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">服务</a></li>
+                        <li><a href="#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">服务支持</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">配送信息</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">退换政策</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-map-marker text-primary"></i>
+                            <span>北京市朝阳区某某街道123号</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-phone text-primary"></i>
+                            <span>+86 123 4567 8910</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-envelope text-primary"></i>
+                            <span>contact@example.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2025 陈优嘉的网站 - 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            const indicators = document.querySelectorAll('.carousel-indicators button');
+            let currentIndex = 0;
+            let carouselInterval;
+
+            // 初始化轮播
+            function startCarousel() {
+                carouselInterval = setInterval(() => {
+                    nextSlide();
+                }, 5000);
+            }
+
+            // 显示指定索引的轮播项
+            function showSlide(index) {
+                // 隐藏所有轮播项
+                carouselItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.classList.add('inactive');
+                });
+                
+                // 重置所有指示器样式
+                indicators.forEach(indicator => {
+                    indicator.classList.remove('bg-opacity-100');
+                    indicator.classList.add('bg-opacity-50');
+                });
+                
+                // 显示当前轮播项
+                carouselItems[index].classList.remove('inactive');
+                carouselItems[index].classList.add('active');
+                
+                // 更新当前指示器样式
+                indicators[index].classList.remove('bg-opacity-50');
+                indicators[index].classList.add('bg-opacity-100');
+                
+                currentIndex = index;
+            }
+
+            // 下一张
+            function nextSlide() {
+                let newIndex = currentIndex + 1;
+                if (newIndex >= carouselItems.length) {
+                    newIndex = 0;
+                }
+                showSlide(newIndex);
+            }
+
+            // 上一张
+            function prevSlide() {
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) {
+                    newIndex = carouselItems.length - 1;
+                }
+                showSlide(newIndex);
+            }
+
+            // 事件监听
+            prevBtn.addEventListener('click', () => {
+                clearInterval(carouselInterval);
+                prevSlide();
+                startCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                clearInterval(carouselInterval);
+                nextSlide();
+                startCarousel();
+            });
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    clearInterval(carouselInterval);
+                    showSlide(index);
+                    startCarousel();
+                });
+            });
+
+            // 鼠标悬停时暂停轮播
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+            });
+
+            carouselContainer.addEventListener('mouseleave', () => {
+                startCarousel();
+            });
+
+            // 启动轮播
+            startCarousel();
+        });
+
+        // 滚动时头部样式变化
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        });
+        
+        // 用户状态管理
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const userDropdown = document.getElementById('userDropdown');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            
+            // 更新用户菜单
+            if (user && user.loggedIn) {
+                // 显示用户名
+                usernameDisplay.textContent = user.username;
+                
+                // 显示欢迎信息
+                welcomeMessage.textContent = `欢迎回来，${user.username}！`;
+                
+                // 生成已登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <a href="../user/user.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user mr-2"></i>个人中心
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-cog mr-2"></i>设置
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" id="logoutBtn" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-out mr-2"></i>退出登录
+                        </a>
+                    </div>
+                `;
+                
+                // 绑定退出登录事件
+                document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // 清除用户登录状态
+                    localStorage.removeItem('user');
+                    // 刷新页面
+                    window.location.reload();
+                });
+            } else {
+                // 生成未登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <h4 class="block px-4 py-2 text-gray-700">未登录</h4>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="../login/login.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-in mr-2"></i>登录
+                        </a>
+                        <a href="../register/register.html" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user-plus mr-2"></i>注册
+                        </a>
+                    </div>
+                `;
+                
+                // 显示登录提示
+                welcomeMessage.textContent = "请登录以享受更多服务";
+            }
+            
+            // 下拉菜单交互
+            const trigger = document.getElementById('userMenuTrigger');
+            const dropdown = document.getElementById('userDropdown');
+            
+            // 点击显示/隐藏下拉菜单
+            trigger.addEventListener('click', () => {
+                if (dropdown.classList.contains('opacity-0')) {
+                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                } else {
+                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                }
+            });
+            
+            // 点击外部关闭下拉菜单
+            document.addEventListener('click', (e) => {
+                if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                }
+            });
+            
+            // 鼠标悬停效果
+            trigger.addEventListener('mouseenter', () => {
+                dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+            });
+            
+            trigger.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!dropdown.matches(':hover')) {
+                        dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                        dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    }
+                }, 200);
+            });
+            
+            dropdown.addEventListener('mouseenter', () => {
+                dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+            });
+            
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            });
+        });
+    </script>
+</body>
+</html>
