@@ -153,9 +153,147 @@
         </div>
     </main>
 
-    <!-- 页脚与第一页相同 -->
-    <script>
-        // JS内容与第一页相同
-    </script>
+    <!-- 页脚 -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fa fa-cube text-primary text-2xl"></i>
+                    <h3 class="text-xl font-bold">陈优嘉的网站</h3>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    提供优质的产品与服务，满足您的各种需求
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4">快速链接</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="../" class="hover:text-primary transition-colors">首页</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">文章</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">帮助</a></li>
+                    <li><a href="../#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                    <li><a href="../#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4">服务支持</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><span>帮助中心</span></li>
+                    <li><span>常见问题</span></li>
+                    <li><span>配送信息</span></li>
+                    <li><span>退换政策</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4">联系我们</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <i class="fa fa-map-marker text-primary"></i>
+                        <span>长春市南关区吉顺街与通化路交汇</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa fa-phone text-primary"></i>
+                        <span>+86 13756112406</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa fa-envelope text-primary"></i>
+                        <span>2571846242@qq.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+            <p>© 2025 陈优嘉的网站 - 保留所有权利</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 滚动时头部样式变化
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('py-2');
+            header.classList.remove('py-3');
+        } else {
+            header.classList.add('py-3');
+            header.classList.remove('py-2');
+        }
+    });
+    
+    // 用户状态管理 - 确保用户名正确显示
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        // 更新用户菜单和用户名显示
+        if (user && user.loggedIn) {
+            // 显示当前登录用户名
+            usernameDisplay.textContent = user.username;
+            
+            // 生成已登录状态的下拉菜单
+            userDropdown.innerHTML = `
+                <div class="py-2">
+                    <a href="../user/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <i class="fa fa-user mr-2"></i>个人中心
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <i class="fa fa-cog mr-2"></i>设置
+                    </a>
+                    <div class="border-t border-gray-100 my-1"></div>
+                    <a href="#" id="logoutBtn" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <i class="fa fa-sign-out mr-2"></i>退出登录
+                    </a>
+                </div>
+            `;
+            
+            // 绑定退出登录事件
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user');
+                window.location.reload();
+            });
+        } else {
+            // 未登录状态处理
+            userDropdown.innerHTML = `
+                <div class="py-2">
+                    <h4 class="block px-4 py-2 text-gray-700">未登录</h4>
+                    <div class="border-t border-gray-100 my-1"></div>
+                    <a href="../login/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <i class="fa fa-sign-in mr-2"></i>登录
+                    </a>
+                    <a href="../register/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <i class="fa fa-user-plus mr-2"></i>注册
+                    </a>
+                </div>
+            `;
+        }
+        
+        // 下拉菜单交互
+        const trigger = document.getElementById('userMenuTrigger');
+        trigger.addEventListener('click', () => {
+            if (userDropdown.classList.contains('opacity-0')) {
+                userDropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+                userDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                userDropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                userDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+        
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', (e) => {
+            if (!trigger.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                userDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+    });
+</script>
 </body>
 </html>
