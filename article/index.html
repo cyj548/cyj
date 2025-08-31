@@ -56,11 +56,11 @@
             <div class="flex items-center space-x-10">
                 <!-- 导航菜单 -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">首页</a>
-                    <a href="article" class="text-gray-700 hover:text-primary transition-colors">文章</a>
+                    <a href="../" class="text-gray-700 hover:text-primary transition-colors">首页</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">文章</a>
                     <a href="#" class="text-gray-700 hover:text-primary transition-colors">帮助</a>
-                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
-                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
+                    <a href="../#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                    <a href="../#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
                 </nav>
                 
                 <!-- 用户菜单 -->
@@ -127,11 +127,11 @@
                  <div>
                     <h4 class="font-semibold mb-4">快速链接</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-primary transition-colors">首页</a></li>
-                        <li><a href="article/">文章</a></li>
+                        <li><a href="../" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#">文章</a></li>
                         <li><a href="#">帮助</a></li>
-                        <li><a href="#about" class="hover:text-primary transition-colors">关于我们</a></li>
-                        <li><a href="#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+                        <li><a href="../#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="../#contact" class="hover:text-primary transition-colors">联系我们</a></li>
                     </ul>
                 </div>
 
@@ -170,99 +170,6 @@
     </footer>
 
     <script>
-        // 轮播图功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const carouselItems = document.querySelectorAll('.carousel-item');
-            const prevBtn = document.querySelector('.carousel-prev');
-            const nextBtn = document.querySelector('.carousel-next');
-            const indicators = document.querySelectorAll('.carousel-indicators button');
-            let currentIndex = 0;
-            let carouselInterval;
-
-            // 初始化轮播
-            function startCarousel() {
-                carouselInterval = setInterval(() => {
-                    nextSlide();
-                }, 5000);
-            }
-
-            // 显示指定索引的轮播项
-            function showSlide(index) {
-                // 隐藏所有轮播项
-                carouselItems.forEach(item => {
-                    item.classList.remove('active');
-                    item.classList.add('inactive');
-                });
-                
-                // 重置所有指示器样式
-                indicators.forEach(indicator => {
-                    indicator.classList.remove('bg-opacity-100');
-                    indicator.classList.add('bg-opacity-50');
-                });
-                
-                // 显示当前轮播项
-                carouselItems[index].classList.remove('inactive');
-                carouselItems[index].classList.add('active');
-                
-                // 更新当前指示器样式
-                indicators[index].classList.remove('bg-opacity-50');
-                indicators[index].classList.add('bg-opacity-100');
-                
-                currentIndex = index;
-            }
-
-            // 下一张
-            function nextSlide() {
-                let newIndex = currentIndex + 1;
-                if (newIndex >= carouselItems.length) {
-                    newIndex = 0;
-                }
-                showSlide(newIndex);
-            }
-
-            // 上一张
-            function prevSlide() {
-                let newIndex = currentIndex - 1;
-                if (newIndex < 0) {
-                    newIndex = carouselItems.length - 1;
-                }
-                showSlide(newIndex);
-            }
-
-            // 事件监听
-            prevBtn.addEventListener('click', () => {
-                clearInterval(carouselInterval);
-                prevSlide();
-                startCarousel();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                clearInterval(carouselInterval);
-                nextSlide();
-                startCarousel();
-            });
-
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    clearInterval(carouselInterval);
-                    showSlide(index);
-                    startCarousel();
-                });
-            });
-
-            // 鼠标悬停时暂停轮播
-            const carouselContainer = document.querySelector('.carousel-container');
-            carouselContainer.addEventListener('mouseenter', () => {
-                clearInterval(carouselInterval);
-            });
-
-            carouselContainer.addEventListener('mouseleave', () => {
-                startCarousel();
-            });
-
-            // 启动轮播
-            startCarousel();
-        });
 
         // 滚动时头部样式变化
         window.addEventListener('scroll', function() {
