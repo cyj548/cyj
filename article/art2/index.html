@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第1页</title>
+    <title>Tailwind CSS 实用技巧</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../assets/css/all.min.css">
     <script>
@@ -45,7 +45,7 @@
         </div>
         
         <article class="bg-white p-8 rounded-lg shadow max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">前端开发入门指南</h2>
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Tailwind CSS 实用技巧</h2>
             
             <div class="flex items-center text-gray-500 mb-8 text-sm">
                 <span class="mr-4"><i class="fa fa-calendar mr-1"></i> 2025-01-10</span>
@@ -54,25 +54,20 @@
             </div>
             
             <div class="prose max-w-none text-gray-700">
-                <p class="mb-4">前端开发是构建Web页面或Web应用的过程，主要关注用户直接交互的部分。作为初学者，你需要掌握以下核心技术：</p>
+                <p class="mb-4">TailwindCSS 凭借原子化类名大幅提升开发效率，但掌握一些实用技巧，能让开发更顺畅。</p>
                 
-                <h3 class="text-xl font-semibold mt-6 mb-3">1. HTML基础</h3>
-                <p class="mb-4">HTML是构建网页结构的基础，负责定义页面中的各种元素，如标题、段落、图片、链接等。</p>
+                <h3 class="text-xl font-semibold mt-6 mb-3">一、自定义配置简化开发</h3>
+                <p class="mb-4">不用重复写复杂类名，在 tailwind.config.js 中自定义主题。比如项目常用特定颜色 “品牌蓝”，可在 theme.colors 里添加：brandBlue: '#165DFF'，之后直接用 text-brandBlue“bg-brandBlue” 调用，既统一风格又节省时间。</p>
                 
-                <h3 class="text-xl font-semibold mt-6 mb-3">2. CSS样式</h3>
-                <p class="mb-4">CSS用于美化HTML元素，控制页面的布局、颜色、字体等视觉效果。推荐学习Tailwind CSS等现代工具类框架。</p>
+                <h3 class="text-xl font-semibold mt-6 mb-3">二、响应式设计快速适配</h3>
+                <p class="mb-4">借助 Tailwind 预设的响应式前缀（sm:、md:、lg: 等），无需写媒体查询。要实现 “移动端文字居中，桌面端文字左对齐”，只需写 <p class="text-center md:text-left">内容</p>，适配不同屏幕轻松搞定。。</p>
                 
-                <h3 class="text-xl font-semibold mt-6 mb-3">3. JavaScript交互</h3>
-                <p class="mb-4">JavaScript为网页添加交互功能，如表单验证、动态内容更新、响应用户操作等。</p>
+                <h3 class="text-xl font-semibold mt-6 mb-3">三、解决类名冲突方便</h3>
+                <p class="mb-4">当第三方组件样式与自定义样式冲突时，用 @apply 整合类名并提升优先级。例如：​</p>
+                <p class='mb-4'>.custom-btn {​<br>
+                                @apply bg-blue-500 text-white py-2 px-4 !important;​<br>
+                                }</p>
                 
-                <h3 class="text-xl font-semibold mt-6 mb-3">学习路径建议</h3>
-                <ul class="list-disc pl-5 mb-4 space-y-2">
-                    <li>先掌握HTML基础标签和结构</li>
-                    <li>学习CSS选择器和基本样式</li>
-                    <li>了解JavaScript基本语法和DOM操作</li>
-                    <li>学习一个前端框架（Vue、React或Angular）</li>
-                    <li>实践项目巩固所学知识</li>
-                </ul>
             </div>
         </article>
     </main>
