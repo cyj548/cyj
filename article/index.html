@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>陈优嘉的网站</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -57,7 +57,7 @@
                 <!-- 导航菜单 -->
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="../" class="text-gray-700 hover:text-primary transition-colors">首页</a>
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">文章</a>
+                    <a href="#" class="text-primary font-medium">文章</a>
                     <a href="#" class="text-gray-700 hover:text-primary transition-colors">帮助</a>
                     <a href="../#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
                     <a href="../#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
@@ -85,9 +85,19 @@
                 </div>
             </div>
             <!-- 移动端菜单按钮 -->
-            <button class="md:hidden text-gray-700 hover:text-primary">
+            <button class="md:hidden text-gray-700 hover:text-primary" id="mobileMenuBtn">
                 <i class="fa fa-bars text-xl"></i>
             </button>
+        </div>
+        <!-- 移动端菜单 (默认隐藏) -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="../" class="py-2 text-gray-700 hover:text-primary transition-colors">首页</a>
+                <a href="#" class="py-2 text-primary font-medium">文章</a>
+                <a href="#" class="py-2 text-gray-700 hover:text-primary transition-colors">帮助</a>
+                <a href="../#about" class="py-2 text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                <a href="../#contact" class="py-2 text-gray-700 hover:text-primary transition-colors">联系我们</a>
+            </div>
         </div>
     </header>
 
@@ -95,16 +105,66 @@
     <main class="container mx-auto px-4 pt-24 pb-16">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">文章</h2>
         
-        <!-- 文章 -->
-        <section id="about" class="mb-16">
-            <h3 class="text-xl font-semibold mb-6">文章标题</h3>
-            <div class="bg-white p-6 rounded-lg shadow">
-                <p class="text-gray-600 mb-4">
-                    文章内容
+        <!-- 文章列表 -->
+        <section id="articles" class="mb-16">
+            <!-- 文章1 -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6 hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">如何有效提升网站用户体验</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    网站用户体验是衡量网站质量的重要指标，直接影响用户留存率和转化率。本文将从页面加载速度、导航设计、内容排版等多个方面，详细介绍提升网站用户体验的实用技巧和方法，帮助你打造更受用户欢迎的网站。
                 </p>
-                <p class="text-gray-600">
-                    文章内容
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-15</span>
+                    <span><i class="fa fa-eye mr-1"></i> 1248</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 文章2 -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6 hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">Tailwind CSS 实用技巧大全</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    Tailwind CSS 作为一款流行的实用优先的 CSS 框架，能够极大提高前端开发效率。本文整理了 Tailwind CSS 的各种实用技巧，包括自定义配置、响应式设计、动画效果实现等，帮助开发者更好地掌握这一工具。
                 </p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-10</span>
+                    <span><i class="fa fa-eye mr-1"></i> 956</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 文章3 -->
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">现代网站设计趋势分析</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    随着互联网技术的发展，网站设计趋势也在不断演变。从极简主义到玻璃态设计，从深色模式到 3D 元素应用，本文将深入分析当前主流的网站设计趋势，为你的下一个项目提供设计灵感和方向。
+                </p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-05</span>
+                    <span><i class="fa fa-eye mr-1"></i> 782</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 分页 -->
+            <div class="flex justify-center mt-10">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-l-md">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-primary border border-primary text-sm font-medium text-white">1</a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </nav>
             </div>
         </section>
         
@@ -128,8 +188,8 @@
                     <h4 class="font-semibold mb-4">快速链接</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="../" class="hover:text-primary transition-colors">首页</a></li>
-                        <li><a href="#">文章</a></li>
-                        <li><a href="#">帮助</a></li>
+                        <li><a href="#" class="text-primary">文章</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助</a></li>
                         <li><a href="../#about" class="hover:text-primary transition-colors">关于我们</a></li>
                         <li><a href="../#contact" class="hover:text-primary transition-colors">联系我们</a></li>
                     </ul>
@@ -138,10 +198,10 @@
                 <div>
                     <h4 class="font-semibold mb-4">服务支持</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><span>帮助中心</span></li>
-                        <li><span>常见问题</span></li>
-                        <li><span>配送信息</span></li>
-                        <li><span>退换政策</span></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">配送信息</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">退换政策</a></li>
                     </ul>
                 </div>
                 
@@ -170,7 +230,6 @@
     </footer>
 
     <script>
-
         // 滚动时头部样式变化
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
@@ -188,20 +247,19 @@
             const user = JSON.parse(localStorage.getItem('user'));
             const usernameDisplay = document.getElementById('usernameDisplay');
             const userDropdown = document.getElementById('userDropdown');
-            const welcomeMessage = document.getElementById('welcomeMessage');
+            const userMenuTrigger = document.getElementById('userMenuTrigger');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
             
             // 更新用户菜单
             if (user && user.loggedIn) {
                 // 显示用户名
                 usernameDisplay.textContent = user.username;
                 
-                // 显示欢迎信息
-                welcomeMessage.textContent = `欢迎回来，${user.username}！`;
-                
                 // 生成已登录状态的下拉菜单
                 userDropdown.innerHTML = `
                     <div class="py-2">
-                        <a href="user/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <a href="../user/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
                             <i class="fa fa-user mr-2"></i>个人中心
                         </a>
                         <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
@@ -226,67 +284,41 @@
                 // 生成未登录状态的下拉菜单
                 userDropdown.innerHTML = `
                     <div class="py-2">
-                        <h4 class="block px-4 py-2 text-gray-700">未登录</h4>
-                        <div class="border-t border-gray-100 my-1"></div>
-                        <a href="login/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <a href="../login/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
                             <i class="fa fa-sign-in mr-2"></i>登录
                         </a>
-                        <a href="register/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                        <a href="../register/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
                             <i class="fa fa-user-plus mr-2"></i>注册
                         </a>
                     </div>
                 `;
-                
-                // 显示登录提示
-                welcomeMessage.textContent = "请登录以享受更多服务";
             }
             
-            // 下拉菜单交互
-            const trigger = document.getElementById('userMenuTrigger');
-            const dropdown = document.getElementById('userDropdown');
-            
-            // 点击显示/隐藏下拉菜单
-            trigger.addEventListener('click', () => {
-                if (dropdown.classList.contains('opacity-0')) {
-                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+            // 用户菜单下拉交互
+            userMenuTrigger.addEventListener('click', function() {
+                const isVisible = userDropdown.classList.contains('opacity-100') && 
+                                 !userDropdown.classList.contains('invisible');
+                
+                if (isVisible) {
+                    userDropdown.classList.remove('opacity-100');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
                 } else {
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    userDropdown.classList.remove('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                    userDropdown.classList.add('opacity-100', 'transform', 'translate-y-0');
                 }
             });
             
-            // 点击外部关闭下拉菜单
-            document.addEventListener('click', (e) => {
-                if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            // 点击其他区域关闭下拉菜单
+            document.addEventListener('click', function(e) {
+                if (!document.getElementById('userMenu').contains(e.target)) {
+                    userDropdown.classList.remove('opacity-100', 'transform', 'translate-y-0');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
                 }
             });
             
-            // 鼠标悬停效果
-            trigger.addEventListener('mouseenter', () => {
-                dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-            });
-            
-            trigger.addEventListener('mouseleave', () => {
-                setTimeout(() => {
-                    if (!dropdown.matches(':hover')) {
-                        dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                        dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                    }
-                }, 200);
-            });
-            
-            dropdown.addEventListener('mouseenter', () => {
-                dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-            });
-            
-            dropdown.addEventListener('mouseleave', () => {
-                dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            // 移动端菜单交互
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
             });
         });
     </script>
