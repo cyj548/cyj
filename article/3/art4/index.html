@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三页文章标题4 - 陈优嘉的网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../../assets/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .header-shadow {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dropdown-shadow {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- 固定头部 -->
+    <header class="fixed top-0 left-0 right-0 bg-white header-shadow z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-cube text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800">陈优嘉的网站</h1>
+            </div>
+            <div class="flex items-center space-x-10">
+                <!-- 导航菜单 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../../../" class="text-gray-700 hover:text-primary transition-colors">首页</a>
+                    <a href="../../" class="text-primary font-medium">文章</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">帮助</a>
+                    <a href="../../../#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                    <a href="../../../#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 用户菜单 -->
+                <div class="relative inline-block" id="userMenu">
+                    <div class="flex items-center space-x-2 cursor-pointer" id="userMenuTrigger">
+                        <img 
+                            src="../../../login/character.png" 
+                            alt="用户头像" 
+                            style="height:40px;width:40px;border-radius:50%;"
+                        >
+                        <span id="usernameDisplay" class="hidden md:inline text-gray-700"></span>
+                        <i class="fa fa-chevron-down text-xs text-gray-500 hidden md:inline"></i>
+                    </div>
+        
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md dropdown-shadow 
+                                opacity-0 invisible transform -translate-y-2 transition-all duration-300
+                                z-10" id="userDropdown">
+                        <!-- 菜单项将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-gray-700 hover:text-primary">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <div class="mb-8">
+            <a href="../../3/" class="inline-flex items-center text-gray-600 hover:text-primary transition-colors">
+                <i class="fa fa-arrow-left mr-2"></i> 返回文章列表
+            </a>
+        </div>
+        
+        <!-- 文章内容 -->
+        <article class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">第三页文章标题4</h2>
+            
+            <div class="flex items-center text-gray-500 text-sm mb-8">
+                <span class="flex items-center mr-6"><i class="fa fa-calendar-o mr-2"></i> 2025-03-14</span>
+                <span class="flex items-center mr-6"><i class="fa fa-user mr-2"></i> 作者名称</span>
+                <span class="flex items-center"><i class="fa fa-eye mr-2"></i> 156 阅读</span>
+            </div>
+            
+            <img src="https://picsum.photos/id/104/1200/600" alt="文章配图" class="w-full h-auto rounded-lg mb-8">
+            
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">
+                    这是第三页第四篇文章的正文内容。本文详细探讨了相关主题的各个方面，提供了深入的分析和独到的见解。
+                </p>
+                <p class="mb-4">
+                    文章的主要观点包括：
+                </p>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li>观点一：详细阐述相关概念和背景知识</li>
+                    <li>观点二：分析当前存在的问题和挑战</li>
+                    <li>观点三：提出解决问题的思路和方法</li>
+                    <li>观点四：展望未来发展趋势和可能性</li>
+                </ul>
+                <p class="mb-4">
+                    通过本文的阐述，希望能为读者提供有价值的参考信息，帮助读者更好地理解和应用相关知识。
+                </p>
+                <p>
+                    感谢您的阅读，如有任何疑问或建议，欢迎在评论区留言讨论。
+                </p>
+            </div>
+            
+            <!-- 文章标签 -->
+            <div class="mt-8 pt-6 border-t border-gray-100">
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
+                        <i class="fa fa-tag mr-1"></i>标签1
+                    </span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
+                        <i class="fa fa-tag mr-1"></i>标签2
+                    </span>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-3 py-1 rounded-full">
+                        <i class="fa fa-tag mr-1"></i>第三页
+                    </span>
+                </div>
+            </div>
+            
+            <!-- 分享按钮 -->
+            <div class="mt-6 flex items-center space-x-4">
+                <span class="text-gray-600">分享：</span>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-weibo text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-wechat text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-qq text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-link text-xl"></i></a>
+            </div>
+        </article>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-cube text-primary text-2xl"></i>
+                        <h3 class="text-xl font-bold">陈优嘉的网站</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        提供优质的产品与服务，满足您的各种需求
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="../../../" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="../../" class="hover:text-primary transition-colors">文章</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助</a></li>
+                        <li><a href="../../../#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="../../../#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">服务支持</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><span>帮助中心</span></li>
+                        <li><span>常见问题</span></li>
+                        <li><span>配送信息</span></li>
+                        <li><span>退换政策</span></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-map-marker text-primary"></i>
+                            <span>长春市南关区吉顺街与通化路交汇</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-phone text-primary"></i>
+                            <span>+86 13756112406</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-envelope text-primary"></i>
+                            <span>2571846242@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2025 陈优嘉的网站 - 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动时头部样式变化
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        });
+        
+        // 用户状态管理
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const userDropdown = document.getElementById('userDropdown');
+            const userMenuTrigger = document.getElementById('userMenuTrigger');
+            
+            // 切换下拉菜单显示状态
+            userMenuTrigger.addEventListener('click', function() {
+                const isVisible = userDropdown.classList.contains('opacity-100') && 
+                                 !userDropdown.classList.contains('invisible');
+                
+                if (isVisible) {
+                    userDropdown.classList.remove('opacity-100');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                } else {
+                    userDropdown.classList.remove('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                    userDropdown.classList.add('opacity-100');
+                }
+            });
+            
+            // 点击其他区域关闭下拉菜单
+            document.addEventListener('click', function(event) {
+                if (!userMenuTrigger.contains(event.target) && 
+                    !userDropdown.contains(event.target)) {
+                    userDropdown.classList.remove('opacity-100');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                }
+            });
+            
+            // 更新用户菜单
+            if (user && user.loggedIn) {
+                // 显示用户名
+                usernameDisplay.textContent = user.username;
+                
+                // 生成已登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <a href="../../../user/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user mr-2"></i>个人中心
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-cog mr-2"></i>设置
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" id="logoutBtn" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-out mr-2"></i>退出登录
+                        </a>
+                    </div>
+                `;
+                
+                // 绑定退出登录事件
+                document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // 清除用户登录状态
+                    localStorage.removeItem('user');
+                    // 刷新页面
+                    window.location.reload();
+                });
+            } else {
+                // 生成未登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <a href="../../../login/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-in mr-2"></i>登录
+                        </a>
+                        <a href="../../../register/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user-plus mr-2"></i>注册
+                        </a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
