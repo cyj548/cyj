@@ -1,40 +1,41 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>此处是彩蛋哦，欧尼酱~~~</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#165DFF',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style type="text/css">
-      body {
+    <style>
+        * {
             margin: 0;
-            background-image: url('caidan.png');
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url('caidan.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;
-          }
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
-  <body>
-    <div class="prose max-w-none text-gray-700">
-                <p class="mb-4">此处是彩蛋哦，欧尼酱~~~</p>
-            </div>
-  </body>
+<body>
+    <div class="content">
+        <h1>此处是彩蛋哦，欧尼酱</h1>
+        <p></p>
+        <p></p>
+    </div>
+</body>
 </html>
-
