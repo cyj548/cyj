@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈优嘉的网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .header-shadow {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            .dropdown-shadow {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .carousel-item {
+                transition: opacity 0.5s ease-in-out;
+            }
+            .carousel-item.active {
+                opacity: 1;
+                z-index: 1;
+            }
+            .carousel-item.inactive {
+                opacity: 0;
+                z-index: 0;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- 固定头部 -->
+    <header class="fixed top-0 left-0 right-0 bg-white header-shadow z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-cube text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800">陈优嘉的网站</h1>
+            </div>
+            <div class="flex items-center space-x-10">
+                <!-- 导航菜单 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../" class="text-gray-700 hover:text-primary transition-colors">首页</a>
+                    <a href="#" class="text-primary font-medium">文章</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">帮助</a>
+                    <a href="../#about" class="text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                    <a href="../#contact" class="text-gray-700 hover:text-primary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 用户菜单 -->
+                <div class="relative inline-block" id="userMenu">
+                    <!-- 触发下拉的元素 -->
+                    <div class="flex items-center space-x-2 cursor-pointer" id="userMenuTrigger">
+                        <img 
+                            src="../login/character.png" 
+                            alt="用户头像" 
+                            style="height:40px;width:40px;border-radius:50%;"
+                        >
+                        <span id="usernameDisplay" class="hidden md:inline text-gray-700"></span>
+                        <i class="fa fa-chevron-down text-xs text-gray-500 hidden md:inline"></i>
+                    </div>
+        
+                    <!-- 下拉菜单 (默认隐藏) -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md dropdown-shadow 
+                                opacity-0 invisible transform -translate-y-2 transition-all duration-300
+                                z-10" id="userDropdown">
+                        <!-- 菜单项将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-gray-700 hover:text-primary" id="mobileMenuBtn">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 (默认隐藏) -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="../" class="py-2 text-gray-700 hover:text-primary transition-colors">首页</a>
+                <a href="#" class="py-2 text-primary font-medium">文章</a>
+                <a href="#" class="py-2 text-gray-700 hover:text-primary transition-colors">帮助</a>
+                <a href="../#about" class="py-2 text-gray-700 hover:text-primary transition-colors">关于我们</a>
+                <a href="../#contact" class="py-2 text-gray-700 hover:text-primary transition-colors">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">文章</h2>
+        
+        <!-- 文章列表 -->
+        <section id="articles" class="mb-16">
+            <!-- 文章1 -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6 hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">如何有效提升网站用户体验</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    网站用户体验是衡量网站质量的重要指标，直接影响用户留存率和转化率。本文将从页面加载速度、导航设计、内容排版等多个方面，详细介绍提升网站用户体验的实用技巧和方法，帮助你打造更受用户欢迎的网站。
+                </p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-15</span>
+                    <span><i class="fa fa-eye mr-1"></i> 1248</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 文章2 -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6 hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">Tailwind CSS 实用技巧大全</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    Tailwind CSS 作为一款流行的实用优先的 CSS 框架，能够极大提高前端开发效率。本文整理了 Tailwind CSS 的各种实用技巧，包括自定义配置、响应式设计、动画效果实现等，帮助开发者更好地掌握这一工具。
+                </p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-10</span>
+                    <span><i class="fa fa-eye mr-1"></i> 956</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 文章3 -->
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                <h3 class="text-xl font-semibold mb-3 hover:text-primary transition-colors">
+                    <a href="#">现代网站设计趋势分析</a>
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    随着互联网技术的发展，网站设计趋势也在不断演变。从极简主义到玻璃态设计，从深色模式到 3D 元素应用，本文将深入分析当前主流的网站设计趋势，为你的下一个项目提供设计灵感和方向。
+                </p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span><i class="fa fa-calendar-o mr-1"></i> 2025-01-05</span>
+                    <span><i class="fa fa-eye mr-1"></i> 782</span>
+                    <a href="#" class="text-primary hover:underline">阅读更多 <i class="fa fa-angle-right ml-1"></i></a>
+                </div>
+            </div>
+            
+            <!-- 分页 -->
+            <div class="flex justify-center mt-10">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-l-md">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">1</a>
+                    <a href="#" class="px-4 py-2 bg-primary border border-primary text-sm font-medium text-white">2</a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+                    <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-cube text-primary text-2xl"></i>
+                        <h3 class="text-xl font-bold">陈优嘉的网站</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        提供优质的产品与服务，满足您的各种需求
+                    </p>
+                </div>
+
+                 <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="../" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#" class="text-primary">文章</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助</a></li>
+                        <li><a href="../#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="../#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">服务支持</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">常见问题</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">配送信息</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">退换政策</a></li>
+                    </ul>
+                </div>
+                
+                 <div>
+                    <h4 class="font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-map-marker text-primary"></i>
+                            <span>长春市南关区吉顺街与通化路交汇</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-phone text-primary"></i>
+                            <span>+86 13756112406</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa fa-envelope text-primary"></i>
+                            <span>2571846242@qq.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2025 陈优嘉的网站 - 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动时头部样式变化
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        });
+        
+        // 用户状态管理
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const userDropdown = document.getElementById('userDropdown');
+            const userMenuTrigger = document.getElementById('userMenuTrigger');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            // 更新用户菜单
+            if (user && user.loggedIn) {
+                // 显示用户名
+                usernameDisplay.textContent = user.username;
+                
+                // 生成已登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <a href="../user/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user mr-2"></i>个人中心
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-cog mr-2"></i>设置
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" id="logoutBtn" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-out mr-2"></i>退出登录
+                        </a>
+                    </div>
+                `;
+                
+                // 绑定退出登录事件
+                document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // 清除用户登录状态
+                    localStorage.removeItem('user');
+                    // 刷新页面
+                    window.location.reload();
+                });
+            } else {
+                // 生成未登录状态的下拉菜单
+                userDropdown.innerHTML = `
+                    <div class="py-2">
+                        <a href="../login/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-sign-in mr-2"></i>登录
+                        </a>
+                        <a href="../register/" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-white transition-colors">
+                            <i class="fa fa-user-plus mr-2"></i>注册
+                        </a>
+                    </div>
+                `;
+            }
+            
+            // 用户菜单下拉交互
+            userMenuTrigger.addEventListener('click', function() {
+                const isVisible = userDropdown.classList.contains('opacity-100') && 
+                                 !userDropdown.classList.contains('invisible');
+                
+                if (isVisible) {
+                    userDropdown.classList.remove('opacity-100');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                } else {
+                    userDropdown.classList.remove('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                    userDropdown.classList.add('opacity-100', 'transform', 'translate-y-0');
+                }
+            });
+            
+            // 点击其他区域关闭下拉菜单
+            document.addEventListener('click', function(e) {
+                if (!document.getElementById('userMenu').contains(e.target)) {
+                    userDropdown.classList.remove('opacity-100', 'transform', 'translate-y-0');
+                    userDropdown.classList.add('opacity-0', 'invisible', 'transform', '-translate-y-2');
+                }
+            });
+            
+            // 移动端菜单交互
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
