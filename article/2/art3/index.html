@@ -19,34 +19,10 @@
             }
         }
     </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .header-shadow {
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-            .dropdown-shadow {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
-            .carousel-item {
-                transition: opacity 0.5s ease-in-out;
-            }
-            .carousel-item.active {
-                opacity: 1;
-                z-index: 1;
-            }
-            .carousel-item.inactive {
-                opacity: 0;
-                z-index: 0;
-            }
-        }
-    </style>
     <style type="text/css">
       body {
             margin: 0;
-            background-image: src('caidan.png');
+            background-image: url('caidan.png');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
