@@ -414,7 +414,7 @@
             if (user && user.loggedIn) {
 
                 // 已登录：从user中取头像ID，拼接后端接口地址
-                const avatarId = user.avatarId || 'default'; // 无头像ID则用default
+                const avatarId = user.avatarId || ${user.username}; // 无头像ID则用default
                 userAvatar.src = `${avatarBaseUrl}${avatarId}`; // 后端接口返回头像图片
                 // 显示用户名
                 usernameDisplay.textContent = user.username;
