@@ -210,87 +210,104 @@
     </footer>
 
     <script>
-        // 检查登录状态
-        document.addEventListener('DOMContentLoaded', function() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            
-            // 如果未登录，跳转到登录页
-            if (!user || !user.loggedIn) {
-                window.location.href = '../login/';
-                return;
+    // 检查登录状态并初始化页面
+    document.addEventListener('DOMContentLoaded', function() {
+        // 解析本地存储的用户信息
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        // 头像相关配置
+        const userAvatar = document.getElementById('userAvatar') || { src: '', onerror: () => {} };
+        const defaultAvatar = '../login/character.png';
+        const avatarBaseUrl = 'img/';
+        
+        // 未登录则跳转登录页
+        if (!user || !user.loggedIn) {
+            window.location.href = '../login/';
+            return;
+        }
+        
+        // 设置用户头像（已登录状态）
+        const username = user.username || 'default';
+        userAvatar.src = `${avatarBaseUrl}${username}.jpg`;
+        // 头像加载失败时显示默认头像
+        userAvatar.onerror = function() {
+            this.src = defaultAvatar;
+        };
+        
+        // 显示用户名到页面
+        document.getElementById('usernameDisplay').textContent = user.username;
+        document.getElementById('profileUsername').textContent = user.username;
+        
+        // 滚动时调整头部样式
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
             }
-            
-            // 显示用户名
-            document.getElementById('usernameDisplay').textContent = user.username;
-            document.getElementById('profileUsername').textContent = user.username;
-            
-            // 滚动时头部样式变化
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.classList.add('py-2');
-                    header.classList.remove('py-3');
-                } else {
-                    header.classList.add('py-3');
-                    header.classList.remove('py-2');
-                }
-            });
-            
-            // 用户菜单交互
-            const trigger = document.getElementById('userMenuTrigger');
-            const dropdown = document.getElementById('userDropdown');
-            
-            // 点击显示/隐藏下拉菜单
-            trigger.addEventListener('click', () => {
-                if (dropdown.classList.contains('opacity-0')) {
-                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-                } else {
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                }
-            });
-            
-            // 点击外部关闭下拉菜单
-            document.addEventListener('click', (e) => {
-                if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                }
-            });
-            
-            // 鼠标悬停效果
-            trigger.addEventListener('mouseenter', () => {
+        });
+        
+        // 用户下拉菜单交互逻辑
+        const trigger = document.getElementById('userMenuTrigger');
+        const dropdown = document.getElementById('userDropdown');
+        
+        // 点击触发器切换下拉菜单显示状态
+        trigger.addEventListener('click', () => {
+            if (dropdown.classList.contains('opacity-0')) {
                 dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
                 dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-            });
-            
-            trigger.addEventListener('mouseleave', () => {
-                setTimeout(() => {
-                    if (!dropdown.matches(':hover')) {
-                        dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
-                        dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                    }
-                }, 200);
-            });
-            
-            dropdown.addEventListener('mouseenter', () => {
-                dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
-            });
-            
-            dropdown.addEventListener('mouseleave', () => {
+            } else {
                 dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
                 dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-            });
-            
-            // 退出登录功能
-            document.getElementById('logoutBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                localStorage.removeItem('user');
-                window.location.href = '../login/';
-            });
+            }
         });
-    </script>
+        
+        // 点击页面外部关闭下拉菜单
+        document.addEventListener('click', (e) => {
+            if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+        
+        // 鼠标悬停触发器显示下拉菜单
+        trigger.addEventListener('mouseenter', () => {
+            dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+            dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+        });
+        
+        // 鼠标离开触发器延迟关闭下拉菜单
+        trigger.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!dropdown.matches(':hover')) {
+                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                }
+            }, 200);
+        });
+        
+        // 鼠标悬停下拉菜单保持显示
+        dropdown.addEventListener('mouseenter', () => {
+            dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+            dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+        });
+        
+        // 鼠标离开下拉菜单关闭
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+            dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        });
+        
+        // 退出登录功能
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('user');
+            window.location.href = '../login/';
+        });
+    });
+</script>
 </body>
 </html>
