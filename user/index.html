@@ -98,7 +98,7 @@
             <div class="p-6">
                 <div class="flex flex-col md:flex-row items-center">
                     <img 
-                        id="userAvatar" 
+                        id="userAvatarProfile" 
                         alt="用户头像" 
                         style="height:100px;width:100px;border-radius:50%;margin-bottom:40px; md:margin-bottom:0; md:margin-right:40px;"
                     >
@@ -209,16 +209,18 @@
         </div>
     </footer>
 
-    <script>
+<script>
     // 检查登录状态并初始化页面
     document.addEventListener('DOMContentLoaded', function() {
         // 解析本地存储的用户信息
         const user = JSON.parse(localStorage.getItem('user'));
         
         // 头像相关配置
-        const userAvatar = document.getElementById('userAvatar') || { src: '', onerror: () => {} };
         const defaultAvatar = '../login/character.png';
         const avatarBaseUrl = 'img/';
+        // 获取两个头像元素（做空值兜底）
+        const userAvatar = document.getElementById('userAvatar') || { src: '', onerror: () => {} };
+        const userAvatarProfile = document.getElementById('userAvatarProfile') || { src: '', onerror: () => {} };
         
         // 未登录则跳转登录页
         if (!user || !user.loggedIn) {
@@ -226,11 +228,19 @@
             return;
         }
         
-        // 设置用户头像（已登录状态）
+        // 拼接头像路径
         const username = user.username || 'default';
-        userAvatar.src = `${avatarBaseUrl}${username}.jpg`;
-        // 头像加载失败时显示默认头像
+        const avatarSrc = `${avatarBaseUrl}${username}.jpg`;
+        
+        // 设置第一个头像（userAvatar）
+        userAvatar.src = avatarSrc;
         userAvatar.onerror = function() {
+            this.src = defaultAvatar;
+        };
+        
+        // 设置第二个头像（userAvatarProfile）
+        userAvatarProfile.src = avatarSrc;
+        userAvatarProfile.onerror = function() {
             this.src = defaultAvatar;
         };
         
