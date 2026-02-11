@@ -509,9 +509,9 @@
   // 原有代码：解析user、获取DOM元素...
   const userAvatar = document.getElementById('userAvatar') || { src: '' }; // 新增：获取头像元素
   // 未登录默认头像路径（前端本地/static目录）
-  const defaultAvatar = '/static/images/default-avatar.png';
+  const defaultAvatar = '/login/character.png';
   // 后端头像访问基础路径（Java接口地址）
-  const avatarBaseUrl = 'http://你的域名/api/avatar/';
+  const avatarBaseUrl = 'user/img/';
 
   if (user && user.loggedIn) {
     // 已登录：从user中取头像ID，拼接后端接口地址
