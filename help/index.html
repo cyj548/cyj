@@ -185,7 +185,7 @@
         // 头像相关配置与元素获取
         const userAvatar = document.getElementById('userAvatar') || { src: '', onerror: () => {} };
         const defaultAvatar = '../login/character.png'; // 未登录默认头像路径
-        const avatarBaseUrl = 'img/'; // 已登录头像基础路径
+        const avatarBaseUrl = '../img/'; // 已登录头像基础路径
         
         // 已登录状态处理
         if (user && user.loggedIn) {
