@@ -232,13 +232,13 @@
         // 新增：头像相关配置与元素获取
         const userAvatar = document.getElementById('userAvatar') || { src: '', onerror: () => {} };
         const defaultAvatar = '../login/character.png'; // 未登录默认头像路径
-        const avatarBaseUrl = '../img/'; // 已登录头像基础路径
+        const avatarBaseUrl = '../user/img/'; // 已登录头像基础路径
         
         if (user && user.loggedIn) {
             // 显示用户名
             usernameDisplay.textContent = user.username;
             
-            // 新增：已登录时设置用户头像（拼接为 ../img/用户名.jpg）
+            // 新增：已登录时设置用户头像（拼接为 ../user/img/用户名.jpg）
             const username = user.username || 'default';
             userAvatar.src = `${avatarBaseUrl}${username}.jpg`;
             // 头像加载失败兜底
