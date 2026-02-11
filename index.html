@@ -414,8 +414,14 @@
             if (user && user.loggedIn) {
 
                 // 已登录：从user中取头像ID，拼接后端接口地址
-                const avatarId = user.avatarId || ${user.username}; // 无头像ID则用default
-                userAvatar.src = `${avatarBaseUrl}${avatarId}`; // 后端接口返回头像图片
+                const username = user.username || 'default'; // 加空值兜底：如果用户名不存在，用'default'替代
+                userAvatar.src = `${avatarBaseUrl}${username}.jpg`; 
+
+                // 头像加载失败兜底（重要：防止图片不存在时裂图）
+                userAvatar.onerror = function() {
+                    this.src = defaultAvatar; // 加载失败显示未登录默认头像
+                };
+
                 // 显示用户名
                 usernameDisplay.textContent = user.username;
                 
