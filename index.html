@@ -404,9 +404,18 @@
             const usernameDisplay = document.getElementById('usernameDisplay');
             const userDropdown = document.getElementById('userDropdown');
             const welcomeMessage = document.getElementById('welcomeMessage');
+            const userAvatar = document.getElementById('userAvatar') || { src: '' }; // 新增：获取头像元素
+            // 未登录默认头像路径（前端本地/static目录）
+            const defaultAvatar = '/login/character.png';
+              // 后端头像访问基础路径（Java接口地址）
+            const avatarBaseUrl = 'user/img/';
             
             // 更新用户菜单
             if (user && user.loggedIn) {
+
+                // 已登录：从user中取头像ID，拼接后端接口地址
+                const avatarId = user.avatarId || 'default'; // 无头像ID则用default
+                userAvatar.src = `${avatarBaseUrl}${avatarId}`; // 后端接口返回头像图片
                 // 显示用户名
                 usernameDisplay.textContent = user.username;
                 
@@ -438,6 +447,8 @@
                     window.location.reload();
                 });
             } else {
+                // 未登录：显示默认头像
+                userAvatar.src = defaultAvatar;
                 // 生成未登录状态的下拉菜单
                 userDropdown.innerHTML = `
                     <div class="py-2">
@@ -505,29 +516,7 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-  // 原有代码：解析user、获取DOM元素...
-  const userAvatar = document.getElementById('userAvatar') || { src: '' }; // 新增：获取头像元素
-  // 未登录默认头像路径（前端本地/static目录）
-  const defaultAvatar = '/login/character.png';
-  // 后端头像访问基础路径（Java接口地址）
-  const avatarBaseUrl = 'user/img/';
 
-  if (user && user.loggedIn) {
-    // 已登录：从user中取头像ID，拼接后端接口地址
-    const avatarId = user.avatarId || 'default'; // 无头像ID则用default
-    userAvatar.src = `${avatarBaseUrl}${avatarId}`; // 后端接口返回头像图片
-    
-    // 原有逻辑：显示用户名、生成下拉菜单...
-  } else {
-    // 未登录：显示默认头像
-    userAvatar.src = defaultAvatar;
-    
-    // 原有逻辑：生成未登录菜单、显示提示...
-  }
-
-  // 原有逻辑：下拉菜单交互...
-});
     </script>
 </body>
 </html>
